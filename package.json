@@ -1,0 +1,32 @@
+{
+  "name": "stem-poll",
+  "version": "1.0.0",
+  "description": "Poll students for ideas about the MKA STEM team.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wgoodall01/stem-poll.git"
+  },
+  "author": "William Goodall",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wgoodall01/stem-poll/issues"
+  },
+  "homepage": "https://github.com/wgoodall01/stem-poll#readme",
+  "dependencies": {
+    "bulma": "^0.1.2",
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-pug": "^3.0.4",
+    "gulp-sass": "^2.3.2",
+    "morgan": "^1.7.0",
+    "sass-module-importer": "^1.2.1"
+  }
+}
