@@ -28,7 +28,16 @@ gulp.task("pug", function(){
         .pipe(gulp.dest("./static"), {overwrite:true});
 });
 
-gulp.task("build", [ "sass", "pug"]);
+gulp.task("js", function(){
+    return gulp.src("src/**/*.js")
+        .pipe(gulp.dest("./static"));
+});
+
+gulp.task("build", [ "sass", "pug", "js"]);
+
+gulp.task("watch", ["build"], function(){
+    gulp.watch("**/*", ["build"]);
+});
 
 gulp.task("run", ["build"], function(){
     let app = require("./app"); // eslint-disable-line no-unused-vars

@@ -1,10 +1,33 @@
 doctype html
-body
+html
     head
         title STEM Team Polling
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
+        script(src="js/survey.js")
         link(rel="stylesheet" href="main.css")
-    body
-        section.hero.is-primary.is-fullheight
-            .hero-body: .container
-                h1.title MKA STEM Team Survey
-                h1.subtitle This site is currently under construction.
+        meta(name="viewport" contents="width=device-width")
+    body(ng-app="stem-survey")
+        .columns.is-gapless
+            .column.is-hidden-mobile
+                .hero.is-primary.is-fullheight.is-bold
+                    .hero-body: .container.is-fluid
+                        h1.title.is-text-aligned-right MKA Stem Team Sign-Up
+                        h2.subtitle.is-text-aligned-right Interested?
+            .column.is-hidden-tablet
+                .hero.is-primary.is-bold
+                    .hero-body: .container.is-fluid
+                            h1.title.is-text-aligned-right MKA Stem Team Sign-Up
+                            h2.subtitle.is-text-aligned-right Interested?
+            .column: .level.is-full-height.survey-form(ng-controller="formCtrl")
+                .level-item
+                    .columns.is-mobile
+                        .column
+                            label.label First Name
+                            .control: input.input(ng-model="firstname")
+                        .column
+                            label.label Last Name
+                            .control: input.input(ng-model="lastname")
+                    label.label Email
+                    .control: input.input(ng-model="email", placeholder="{{emailPlaceholder}}")
+                    .control
+                        button.button.is-primary.is-medium(ng-class="{'is-loading':loading}" ng-click="submit()") {{error ? "Error - try again?":"Submit"}}

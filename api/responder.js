@@ -14,8 +14,8 @@ module.exports = function(db){
 
 
         db.query(
-            "INSERT INTO responses(choice, firstname, lastname, yog, email) VALUES ($1, $2, $3, $4, $5)",
-            [req.body.choice, req.body.firstname, req.body.lastname, req.body.yog, req.body.email],
+            "INSERT INTO responses(choice, firstname, lastname, email) VALUES ($1, $2, $3, $4)",
+            [req.body.choice, req.body.firstname, req.body.lastname, req.body.email],
             function(err){
                 // Handle constraint violations
                 if(err && err.constraint){ return next(400); }
