@@ -31,5 +31,5 @@ gulp.task("pug", function(){
 gulp.task("build", [ "sass", "pug"]);
 
 gulp.task("run", ["build"], function(){
-    let app = require("./app");
+    let app = require("./app"); // eslint-disable-line no-unused-vars
 });
