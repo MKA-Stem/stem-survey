@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wgoodall01/stem-poll#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bulma": "^0.1.2",
     "compression": "^1.6.2",
     "express": "^4.14.0",
@@ -26,6 +27,7 @@
     "gulp-htmlmin": "^2.0.0",
     "gulp-pug": "^3.0.4",
     "gulp-sass": "^2.3.2",
+    "http-status-codes": "^1.0.6",
     "morgan": "^1.7.0",
     "pg": "^6.1.0",
     "pg-connection-string": "^0.1.3",
