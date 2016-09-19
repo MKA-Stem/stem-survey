@@ -9,7 +9,6 @@ module.exports = function(db){
             req.body.choice,
             req.body.firstname,
             req.body.lastname,
-            req.body.yog,
         ]
         .forEach(val => assert.ok(val));
 
