@@ -13,3 +13,16 @@
 .is-text-aligned-right{
     text-align:right;
 }
+
+.selection-tile{
+    cursor:pointer;
+
+    transition:transform .2s;
+    &:hover{
+        transform:scale(1.05, 1.05);
+    }
+
+    &.is-selected{
+        transform:scale(0.95, 0.95);
+    }
+}

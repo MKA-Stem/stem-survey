@@ -18,16 +18,24 @@ html
                     .hero-body: .container.is-fluid
                             h1.title.is-text-aligned-right MKA Stem Team Sign-Up
                             h2.subtitle.is-text-aligned-right Interested?
-            .column: .level.is-full-height.survey-form(ng-controller="formCtrl")
+            .column: .level.is-full-height.survey-form(ng-controller="formCtrl as c")
                 .level-item
                     .columns.is-mobile
                         .column
                             label.label First Name
-                            .control: input.input(ng-model="firstname")
+                            .control: input.input(ng-model="c.firstname")
                         .column
                             label.label Last Name
-                            .control: input.input(ng-model="lastname")
+                            .control: input.input(ng-model="c.lastname")
                     label.label Email
-                    .control: input.input(ng-model="email", placeholder="{{emailPlaceholder}}")
+                    .control: input.input(ng-model="c.email", placeholder="{{c.emailPlaceholder}}")
+                    label.label What do you want to do?
+                    .control(ng-if="c.options"): .columns.is-mobile.is-multiline
+                        .column.is-half(ng-repeat="opt in c.options")
+                            .selection-tile.notification.is-info(ng-click="c.choice = opt.id" ng-class="{'is-success is-selected':c.choice == opt.id}")
+                                p.title {{opt.name}}
+                                p.title.is-6 {{opt.description}}
+                    .control(ng-if="!c.options") Loading options...
+
                     .control
-                        button.button.is-primary.is-medium(ng-class="{'is-loading':loading}" ng-click="submit()") {{error ? "Error - try again?":"Submit"}}
+                        button.button.is-primary.is-medium(ng-class="{'is-loading':c.loading}" ng-click="c.submit()") {{error ? "Error - try again?":"Submit"}}
