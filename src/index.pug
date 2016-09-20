@@ -18,21 +18,52 @@ body(ng-app="stem-survey")
                         h1.title.is-text-aligned-right MKA Stem Team Sign-Up
                         h2.subtitle.is-text-aligned-right Interested?
         .column: .level.is-full-height.survey-form(ng-controller="formCtrl as c")
-            .level-item
+            .level-item: form(novalidate name="inputForm")
                 .columns.is-mobile
                     .column
                         label.label First Name
-                        .control: input.input(ng-model="c.firstname")
+                        .control: input.input(
+                                name="firstname" 
+                                ng-model="c.firstname"
+                                required 
+                                ng-required="true" 
+                                ng-class="{\
+                                    'is-danger':inputForm.firstname.$invalid && !inputForm.firstname.$pristine,\
+                                    'is-success':!inputForm.firstname.$invalid && !inputForm.firstname.$pristine}")
+
                     .column
                         label.label Last Name
-                        .control: input.input(ng-model="c.lastname")
+                        .control: input.input(
+                            name="lastname" 
+                            ng-model="c.lastname" 
+                            required 
+                            ng-required="true"
+                            ng-class="{\
+                                    'is-danger':inputForm.lastname.$invalid && !inputForm.lastname.$pristine,\
+                                    'is-success':!inputForm.lastname.$invalid && !inputForm.lastname.$pristine}")
                 .columns.is-mobile
                     .column.is-3
                         label.label Grade
-                        .control: input.input(ng-model="c.grade", type="number")
+                        .control: input.input(
+                            name="grade"
+                            ng-model="c.grade"
+                            type="number"
+                            value="9"
+                            required
+                            ng-required="true"
+                            ng-class="{\
+                                    'is-danger':inputForm.grade.$invalid && !inputForm.grade.$pristine,\
+                                    'is-success':!inputForm.grade.$invalid && !inputForm.grade.$pristine}")
                     .column.is-9
                         label.label Email
-                        .control: input.input(ng-model="c.email", placeholder="{{c.emailPlaceholder}}")
+                        .control: input.input(
+                            name="email"
+                            ng-model="c.email"
+                            placeholder="{{c.emailPlaceholder}}"
+                            type="email"
+                            ng-class="{\
+                                    'is-danger':inputForm.email.$invalid && !inputForm.email.$pristine,\
+                                    'is-success':!inputForm.email.$invalid && !inputForm.firstname.$invalid && !inputForm.lastname.$invalid && !inputForm.grade.$invalid}")
                 label.label What do you want to do?
                 .control(ng-if="c.options"): .columns.is-mobile.is-multiline
                     .column.is-half(ng-repeat="opt in c.options")
@@ -42,4 +73,7 @@ body(ng-app="stem-survey")
                 .control(ng-if="!c.options") Loading options...
 
                 .control
-                    button.button.is-primary.is-medium(ng-class="{'is-loading':c.loading}" ng-click="c.submit()") {{error ? "Error - try again?":"Submit"}}
+                    button.button.is-primary.is-medium(
+                        ng-class="{'is-loading':c.loading}" 
+                        ng-click="c.submit()"
+                        ng-disabled="inputForm.$invalid || !c.choice") {{error ? "Error - try again?":"Submit"}}
