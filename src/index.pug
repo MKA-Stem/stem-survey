@@ -27,8 +27,13 @@ html
                         .column
                             label.label Last Name
                             .control: input.input(ng-model="c.lastname")
-                    label.label Email
-                    .control: input.input(ng-model="c.email", placeholder="{{c.emailPlaceholder}}")
+                    .columns.is-mobile
+                        .column.is-3
+                            label.label Grade
+                            .control: input.input(ng-model="c.grade", type="number")
+                        .column.is-9
+                            label.label Email
+                            .control: input.input(ng-model="c.email", placeholder="{{c.emailPlaceholder}}")
                     label.label What do you want to do?
                     .control(ng-if="c.options"): .columns.is-mobile.is-multiline
                         .column.is-half(ng-repeat="opt in c.options")
