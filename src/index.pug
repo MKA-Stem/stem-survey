@@ -1,46 +1,45 @@
 doctype html
-html
-    head
-        title STEM Team Polling
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
-        script(src="js/survey.js")
-        link(rel="stylesheet" href="main.css")
-        meta(name="viewport" contents="width=device-width, initial-scale=1")
-    body(ng-app="stem-survey")
-        .columns.is-gapless
-            .column.is-hidden-mobile
-                .hero.is-primary.is-fullheight.is-bold
-                    .hero-body: .container.is-fluid
-                        h1.title.is-text-aligned-right MKA STEM Club Sign-Up
+head
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title STEM Team Polling
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
+    script(src="js/survey.js")
+    link(rel="stylesheet" href="main.css")
+body(ng-app="stem-survey")
+    .columns.is-gapless.awful-hack
+        .column.is-hidden-mobile
+            .hero.is-primary.is-fullheight.is-bold
+                .hero-body: .container.is-fluid
+                    h1.title.is-text-aligned-right MKA STEM Club Sign-Up
+                    h2.subtitle.is-text-aligned-right Interested?
+        .column.is-hidden-tablet
+            .hero.is-primary.is-bold
+                .hero-body: .container.is-fluid
+                        h1.title.is-text-aligned-right MKA Stem Team Sign-Up
                         h2.subtitle.is-text-aligned-right Interested?
-            .column.is-hidden-tablet
-                .hero.is-primary.is-bold
-                    .hero-body: .container.is-fluid
-                            h1.title.is-text-aligned-right MKA Stem Team Sign-Up
-                            h2.subtitle.is-text-aligned-right Interested?
-            .column: .level.is-full-height.survey-form(ng-controller="formCtrl as c")
-                .level-item
-                    .columns.is-mobile
-                        .column
-                            label.label First Name
-                            .control: input.input(ng-model="c.firstname")
-                        .column
-                            label.label Last Name
-                            .control: input.input(ng-model="c.lastname")
-                    .columns.is-mobile
-                        .column.is-3
-                            label.label Grade
-                            .control: input.input(ng-model="c.grade", type="number")
-                        .column.is-9
-                            label.label Email
-                            .control: input.input(ng-model="c.email", placeholder="{{c.emailPlaceholder}}")
-                    label.label What do you want to do?
-                    .control(ng-if="c.options"): .columns.is-mobile.is-multiline
-                        .column.is-half(ng-repeat="opt in c.options")
-                            .selection-tile.notification.is-info(ng-click="c.choice = opt.id" ng-class="{'is-success is-selected':c.choice == opt.id}")
-                                p.title {{opt.name}}
-                                p.title.is-6 {{opt.description}}
-                    .control(ng-if="!c.options") Loading options...
+        .column: .level.is-full-height.survey-form(ng-controller="formCtrl as c")
+            .level-item
+                .columns.is-mobile
+                    .column
+                        label.label First Name
+                        .control: input.input(ng-model="c.firstname")
+                    .column
+                        label.label Last Name
+                        .control: input.input(ng-model="c.lastname")
+                .columns.is-mobile
+                    .column.is-3
+                        label.label Grade
+                        .control: input.input(ng-model="c.grade", type="number")
+                    .column.is-9
+                        label.label Email
+                        .control: input.input(ng-model="c.email", placeholder="{{c.emailPlaceholder}}")
+                label.label What do you want to do?
+                .control(ng-if="c.options"): .columns.is-mobile.is-multiline
+                    .column.is-half(ng-repeat="opt in c.options")
+                        .selection-tile.notification.is-info(ng-click="c.choice = opt.id" ng-class="{'is-success is-selected':c.choice == opt.id}")
+                            p.title {{opt.name}}
+                            p.title.is-6 {{opt.description}}
+                .control(ng-if="!c.options") Loading options...
 
-                    .control
-                        button.button.is-primary.is-medium(ng-class="{'is-loading':c.loading}" ng-click="c.submit()") {{error ? "Error - try again?":"Submit"}}
+                .control
+                    button.button.is-primary.is-medium(ng-class="{'is-loading':c.loading}" ng-click="c.submit()") {{error ? "Error - try again?":"Submit"}}
