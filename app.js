@@ -1,4 +1,5 @@
 "use strict";
+let RateLimit   = require("express-rate-limit");
 let assert      = require("assert");
 let bodyParser  = require("body-parser");
 let compression = require("compression");
@@ -8,6 +9,7 @@ let morgan      = require("morgan");
 let pg          = require("pg");
 let pgcs        = require("pg-connection-string");
 let util        = require("util");
+
 let app = express();
 
 // Make sure vital env vars exist
@@ -41,6 +43,13 @@ let db = new pg.Pool(dbConfig);
 
 // Serve static resources
 app.use(express.static(__dirname + "/static"));
+
+// Rate limit the API
+app.use("/api/", new RateLimit({
+    windowMs:60*1000, // 1 minute
+    max: 60, // max 60 requests/min
+    delayMs: 0
+}));
 
 // Serve API
 app.post("/api/respond", require("./api/responder")(db));
