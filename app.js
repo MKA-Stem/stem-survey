@@ -44,6 +44,7 @@ app.use(express.static(__dirname + "/static"));
 
 // Serve API
 app.post("/api/respond", require("./api/responder")(db));
+app.get("/api/options", require("./api/options")(db));
 
 // Handle errors
 app.use(function(err, req, res, next){ // eslint-disable-line no-unused-vars
