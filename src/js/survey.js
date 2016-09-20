@@ -7,10 +7,12 @@ app.controller("formCtrl", function($scope, $http) {
     vm.error = false;
     
     var updatePlaceholder = function(){
+        var year = (new Date()).getFullYear();
+        vm.yog = (year - vm.grade + 4 + 9);
+        
         if(vm.firstname && vm.lastname && vm.grade){
-            var year = (new Date()).getFullYear();
             vm.emailPlaceholder =
-                `${vm.firstname.substring(0, 1).toLowerCase()}${vm.lastname.toLowerCase()}${year - vm.grade + 4 + 9}@mka.org`;
+                `${vm.firstname.substring(0, 1).toLowerCase()}${vm.lastname.toLowerCase()}${vm.yog}@mka.org`;
         } else {
             vm.emailPlaceholder = "";
         }
@@ -25,7 +27,7 @@ app.controller("formCtrl", function($scope, $http) {
         var body = {
             firstname: vm.firstname,
             lastname: vm.lastname,
-            grade: vm.grade,
+            yog: vm.yog,
             email: vm.email || undefined,
             choice: vm.choice
         };

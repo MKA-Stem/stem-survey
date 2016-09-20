@@ -9,13 +9,14 @@ module.exports = function(db){
             req.body.choice,
             req.body.firstname,
             req.body.lastname,
+            req.body.yog
         ]
         .forEach(val => assert.ok(val));
 
 
         db.query(
-            "INSERT INTO responses(choice, firstname, lastname, email) VALUES ($1, $2, $3, $4)",
-            [req.body.choice, req.body.firstname, req.body.lastname, req.body.email],
+            "INSERT INTO responses(choice, firstname, lastname, email, yog) VALUES ($1, $2, $3, $4, $5)",
+            [req.body.choice, req.body.firstname, req.body.lastname, req.body.email, req.body.yog],
             function(err){
                 // Handle constraint violations
                 if(err && err.constraint){ return next(400); }
