@@ -41,6 +41,6 @@ app.controller("formCtrl", function($scope, $http) {
 
 
     $http.get("api/options")
-    .then(function success(res){console.log(res.data.options); vm.options = res.data.options; },
+    .then(function success(res){vm.options = res.data.options; },
           function fail(){alert("There was an error!"); });
 });

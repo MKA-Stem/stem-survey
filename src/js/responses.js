@@ -15,7 +15,6 @@ app.controller("responsesTableCtrl", function($scope, $http){
 
     socket.on("response", function(data){
         $scope.$apply(function(){
-            console.dir(options);
             var choice = options.filter(
                 function(opt){return opt.id == data.choice;})[0];
 
