@@ -10,7 +10,12 @@ body(ng-app="stem-survey")
     div(ng-controller="responsesTableCtrl as c")
         .hero.is-light: .hero-body: .container
             h1.title STEM Team Survey Responses
-            h2.subtitle {{"See the results rolling in." || c.msg}}
+            h2.subtitle 
+                a(href="/") Home
+                span="   |   "
+                a(href="/chart.html") Chart
+                span="   |   "
+                span {{"See the results rolling in." || c.msg}}
 
         .container: table.table.is-striped.is-narrow
             thead: tr
