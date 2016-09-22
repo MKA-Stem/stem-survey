@@ -6,7 +6,7 @@ module.exports = function(db, io){
     return function(req, res, next){
 
         [
-            req.body.choice,
+            typeof req.body.choice != "undefined",
             req.body.firstname,
             req.body.lastname,
             req.body.yog

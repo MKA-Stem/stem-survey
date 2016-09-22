@@ -4,14 +4,16 @@ head
     title Poll Chart
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
     script(src="https://cdn.socket.io/socket.io-1.4.5.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.0.2/angular-chart.js")
     script(src="js/chart.js")
     link(rel="stylesheet" href="main.css")
 body(ng-app="stem-survey")
     div(ng-controller="chartCtrl as c")
-        .hero.is-light.is-fullheight.is-dark: .hero-body
-            .container
-                h1.title In Development
-                h2.subtitle
-                    a(href="/") Back
+        .hero.is-light.is-fullheight.is-light: .hero-body
+            .container.is-fluid
+                canvas.chart.chart-bar(
+                    chart-data="c.data"
+                    chart-labels="c.labels"
+                    chart-options="c.chartOptions"
+                )
