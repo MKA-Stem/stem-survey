@@ -36,7 +36,7 @@ body(ng-app="stem-survey"): div(ng-controller="formCtrl as c")
                             a(href="responses.html") Responses
                             span="   |   "
                             a(href="chart.html") Chart
-        .column: .level.is-full-height.survey-form()
+        .column.is-flex: .level.survey-form()
             .level-item: form(novalidate name="inputForm")
                 .columns.is-mobile
                     .column
