@@ -85,7 +85,7 @@ body(ng-app="stem-survey"): div(ng-controller="formCtrl as c")
                                     'is-success':!inputForm.email.$invalid && !inputForm.firstname.$invalid && !inputForm.lastname.$invalid && !inputForm.grade.$invalid}")
                 label.label What do you want to do?
                 .control(ng-if="c.options"): .columns.is-mobile.is-multiline
-                    .column.is-half(ng-repeat="opt in c.options")
+                    .column.is-half.selection-column.is-flex(ng-repeat="opt in c.options")
                         .selection-tile.notification.is-info(ng-click="c.choice = opt.id" ng-class="{'is-success is-selected':c.choice == opt.id}")
                             p.title {{opt.name}}
                             p.title.is-6 {{opt.description}}
