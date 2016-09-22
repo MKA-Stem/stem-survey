@@ -1,11 +1,8 @@
 var app = angular.module("stem-survey", ["chart.js"]);
 var socket = io();
 
-var debug = "no";
-
 app.controller("chartCtrl", function($scope, $http){
     var vm = this;
-    var options = [];
 
     vm.chartOptions = { scales: { yAxes: [{
         display: true,
@@ -48,6 +45,4 @@ app.controller("chartCtrl", function($scope, $http){
                         (vm.data[0][data.choice] || 0) + 1;
         });
     });
-
-    debug = function(){ console.dir(vm); };
 });
