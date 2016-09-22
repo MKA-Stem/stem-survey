@@ -6,6 +6,7 @@ let clean = require("gulp-clean");
 let htmlMin = require("gulp-htmlmin");
 let cleanCss = require("gulp-clean-css");
 let moduleImporter = require("sass-module-importer");
+let autoprefixer = require("gulp-autoprefixer");
 
 gulp.task("clean", function(){
     return gulp.src("static", {read:false})
@@ -16,6 +17,10 @@ gulp.task("sass", function() {
     return gulp.src("src/**/*.scss")
         .pipe(sass({
             importer: moduleImporter()
+        }))
+        .pipe(autoprefixer({
+            browsers: ["last 2 versions"],
+            cascade: false
         }))
         .pipe(cleanCss())
         .pipe(gulp.dest("./static", {overwrite:true}));
