@@ -2,7 +2,7 @@
 
 let assert = require("assert");
 
-module.exports = function(db){
+module.exports = function(db, io){
     return function(req, res, next){
 
         [
@@ -25,6 +25,15 @@ module.exports = function(db){
                 // Respond nicely
                 res.status(200).json({
                     status:"ok"
+                });
+
+                // Notify of change
+                io.emit("response", {
+                    choice: req.body.choice,
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
+                    email: req.body.email,
+                    yog: req.body.yog
                 });
             }
         );

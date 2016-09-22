@@ -8,9 +8,12 @@ let httpStatus  = require("http-status-codes");
 let morgan      = require("morgan");
 let pg          = require("pg");
 let pgcs        = require("pg-connection-string");
+let socketIO    = require("socket.io");
 let util        = require("util");
+let http        = require("http");
 
 let app = express();
+let server = http.createServer(app);
 
 // Make sure vital env vars exist
 [
@@ -41,6 +44,9 @@ let dbConfig = util._extend(urlConfig, {
 
 let db = new pg.Pool(dbConfig);
 
+// Connect socket.io
+let io = socketIO(server);
+
 // Serve static resources
 app.use(express.static(__dirname + "/static"));
 
@@ -52,8 +58,9 @@ app.use("/api/", new RateLimit({
 }));
 
 // Serve API
-app.post("/api/respond", require("./api/responder")(db));
+app.post("/api/respond", require("./api/responder")(db, io));
 app.get("/api/options", require("./api/options")(db));
+app.get("/api/responses", require("./api/responses")(db));
 
 // Handle errors
 app.use(function(err, req, res, next){ // eslint-disable-line no-unused-vars
@@ -74,4 +81,4 @@ app.use(function(err, req, res, next){ // eslint-disable-line no-unused-vars
 
 // Listen on PORT
 console.log("Listening on http://localhost:"+process.env.PORT);
-app.listen(process.env.PORT);
+server.listen(process.env.PORT);

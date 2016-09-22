@@ -1,0 +1,31 @@
+doctype html
+head
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title Poll Responses
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
+    script(src="https://cdn.socket.io/socket.io-1.4.5.js")
+    script(src="js/responses.js")
+    link(rel="stylesheet" href="main.css")
+body(ng-app="stem-survey")
+    div(ng-controller="responsesTableCtrl as c")
+        .hero.is-light: .hero-body: .container
+            h1.title STEM Team Survey Responses
+            h2.subtitle {{"See the results rolling in." || c.msg}}
+
+        .container: table.table.is-striped.is-narrow
+            thead: tr
+                td First name
+                td Last name
+                td YOG
+                td Email
+                td Choice name
+                td Choice Description
+            tbody
+                tr(ng-repeat="row in c.rows")
+                    td {{ row.firstname }}
+                    td {{ row.lastname }}
+                    td {{ row.yog }}
+                    td {{ row.email }}
+                    td {{ row.name }}
+                    td {{ row.description }}
+

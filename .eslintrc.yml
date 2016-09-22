@@ -9,6 +9,10 @@ env:
 extends:
     - "eslint:recommended"
 
+globals:
+    angular: true
+    io: true
+
 rules:
     quotes:
         - error
