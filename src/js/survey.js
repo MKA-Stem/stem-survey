@@ -5,6 +5,7 @@ app.controller("formCtrl", function($scope, $http) {
 
     vm.loading = false;
     vm.error = false;
+    vm.choice = "unset";
     
     var updatePlaceholder = function(){
         var year = (new Date()).getFullYear();

@@ -79,4 +79,4 @@ body(ng-app="stem-survey")
                     button.button.is-primary.is-medium(
                         ng-class="{'is-loading':c.loading}" 
                         ng-click="c.submit()"
-                        ng-disabled="inputForm.$invalid || !c.choice") {{error ? "Error - try again?":"Submit"}}
+                        ng-disabled="inputForm.$invalid || c.choice == 'unset'") {{error ? "Error - try again?":"Submit"}}
