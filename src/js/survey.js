@@ -6,6 +6,7 @@ app.controller("formCtrl", function($scope, $http) {
     vm.loading = false;
     vm.error = false;
     vm.choice = "unset";
+    vm.thanksHidden = true;
     
     var updatePlaceholder = function(){
         var year = (new Date()).getFullYear();
@@ -38,6 +39,25 @@ app.controller("formCtrl", function($scope, $http) {
               function error(){vm.loading = false; vm.error = true;});
 
         vm.loading = true;
+
+        vm.thanks = true;
+        vm.thanksHidden = false;
+
+        vm.firstname = "";
+        vm.lastname = "";
+        vm.grade = "";
+        vm.email = "";
+        vm.choice = "unset";
+        $scope.inputForm.$setPristine();
+        
+        setTimeout(function(){
+            $scope.$apply(function(){
+                vm.thanks = false;
+                setTimeout(function(){$scope.$apply(function(){
+                    vm.thanksHidden = true;
+                });}, 1000);
+            });
+        }, 2000);
     };
 
 

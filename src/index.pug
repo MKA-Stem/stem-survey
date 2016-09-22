@@ -5,8 +5,19 @@ head
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
     script(src="js/survey.js")
     link(rel="stylesheet" href="main.css")
-body(ng-app="stem-survey")
-    .columns.is-gapless.awful-hack
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css")
+body(ng-app="stem-survey"): div(ng-controller="formCtrl as c")
+    .thanks-modal.modal.animated(ng-if="!c.thanksHidden"
+        ng-class="{'fadeIn is-active':c.thanks,\
+                   'fadeOut is-active':!c.thanks}"
+    )
+        .modal-background
+        .modal-content.is-full-width
+            .hero.is-light: .hero-body: .container
+                h1.title Thanks
+                h2.subtitle See you in the STEM Team!
+
+    .columns.is-gapless
         .column.is-hidden-mobile
             .hero.is-primary.is-fullheight.is-bold
                 .hero-body: .container.is-fluid
@@ -18,9 +29,12 @@ body(ng-app="stem-survey")
         .column.is-hidden-tablet
             .hero.is-primary.is-bold
                 .hero-body: .container.is-fluid
-                        h1.title.is-text-aligned-right MKA Stem Team Sign-Up
-                        h2.subtitle.is-text-aligned-right Interested?
-        .column: .level.is-full-height.survey-form(ng-controller="formCtrl as c")
+                        h1.title.is-text-aligned-right MKA STEM Club Sign-Up
+                        h2.subtitle.is-text-aligned-right
+                            a(href="responses.html") Responses
+                            span="   |   "
+                            a(href="chart.html") Chart
+        .column: .level.is-full-height.survey-form()
             .level-item: form(novalidate name="inputForm")
                 .columns.is-mobile
                     .column
