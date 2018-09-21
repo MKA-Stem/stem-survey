@@ -1,7 +1,7 @@
 doctype html
 head
     meta(name="viewport" content="width=device-width, initial-scale=1")
-    title STEM Team Polling
+    title= PAGE_TITLE
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
     script(src="js/survey.js")
     link(rel="stylesheet" href="main.css")
@@ -16,14 +16,14 @@ body(ng-app="stem-survey"): div(ng-controller="formCtrl as c")
         .modal-background
         .modal-content.is-full-width
             .hero.is-light: .hero-body: .container
-                h1.title Thanks
-                h2.subtitle See you in the STEM Team!
+                h1.title Thanks for signing up!
+                h2.subtitle See you on the team!
 
     .columns.is-gapless
         .column.is-hidden-mobile
             .hero.is-primary.is-fullheight.is-bold
                 .hero-body: .container.is-fluid
-                    h1.title.is-text-aligned-right MKA STEM Club Sign-Up
+                    h1.title.is-text-aligned-right= PAGE_TITLE
                     h2.subtitle.is-text-aligned-right
                         a(href="responses.html") Responses
                         span="   |   "

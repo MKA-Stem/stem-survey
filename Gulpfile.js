@@ -33,9 +33,12 @@ gulp.task('sass', function() {
 gulp.task('pug', function() {
   return gulp
     .src('src/**/*.pug')
-    .pipe(pug())
+    .pipe(pug({data: {PAGE_TITLE: process.env.PAGE_TITLE || 'MKA STEM Club Sign-Up'}}))
     .pipe(htmlMin({collapseWhitespace: true}))
-    .pipe(gulp.dest('./static'), {overwrite: true});
+    .pipe(
+      gulp.dest('./static'),
+      {overwrite: true}
+    );
 });
 
 gulp.task('js', function() {
