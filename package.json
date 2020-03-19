@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/wgoodall01/stem-poll/issues"
   },
+  "engines": {
+    "node": "6"
+  },
   "homepage": "https://github.com/wgoodall01/stem-poll#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
